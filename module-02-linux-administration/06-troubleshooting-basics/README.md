@@ -36,6 +36,19 @@ du -sh /var/log/* 2>/dev/null | sort -rh | head -10
 find / -type f -size +100M 2>/dev/null | head -10
 ```
 
+### Inodes — a Different Kind of "Full"
+
+A filesystem can report free space in `df -h` but still fail to create files if it runs out of **inodes** (each file/directory consumes one, regardless of size — common with millions of tiny cache or session files).
+
+```bash
+df -i
+# Filesystem      Inodes  IUsed   IFree IUse%  Mounted on
+# /dev/xvda1      524288  524288      0  100%  /   ← inodes exhausted, disk may show space free
+
+# Find directories with the most files (a likely inode hog)
+for d in /var/log /tmp /var/cache; do echo "$d: $(find "$d" -xdev | wc -l) entries"; done
+```
+
 ### What to do when disk is full
 
 ```bash
@@ -54,7 +67,24 @@ sudo truncate -s 0 /var/log/nginx/access.log
 ```
 
 ---
+## Disk I/O
 
+Slow disk I/O can make a server feel "stuck" even when CPU and memory look fine.
+
+```bash
+# Install if missing (part of sysstat)
+sudo apt install -y sysstat
+
+# Snapshot of I/O per device (updates every 2s, 5 times)
+iostat -xz 2 5
+
+# Interactive, per-process disk I/O (like top, but for disk)
+sudo iotop
+```
+
+`iostat` columns to watch: `%util` (device busy %, high = saturated) and `await` (average I/O wait time in ms, high = slow disk).
+
+---
 ## Memory
 
 ```bash
@@ -74,6 +104,10 @@ ps aux --sort=-%mem | head -10
 
 # How much memory does a specific process use?
 ps aux | grep nginx
+
+# Live memory + swap activity snapshot (updates every 2s, 5 times)
+vmstat 2 5
+# "si"/"so" columns > 0 repeatedly means the server is actively swapping — a sign of memory pressure
 ```
 
 ---
@@ -149,6 +183,12 @@ nc -zv google.com 443
 
 # Trace network route to a host
 traceroute google.com
+
+# Show the local routing table — which interface/gateway traffic for a destination goes through
+ip route
+
+# Show network interfaces and their IP addresses
+ip addr
 ```
 
 ---
@@ -277,7 +317,7 @@ sudo journalctl --disk-usage
 
 ## Next Step
 
-Proceed to [Module 03 — IAM & AWS CLI →](../../module-03-iam-and-aws-cli/README.md)
+[07 — User & Group Management →](../07-user-group-management/README.md)
 
 
 ---

@@ -158,9 +158,17 @@ basic-cloud-linux/
 │   │   ├── README.md
 │   │   ├── lab-05-cronjobs.md         crontab syntax, user vs root cron
 │   │   └── scripts/cron-examples.sh
-│   └── 06-troubleshooting-basics/
-│       ├── README.md                  Connectivity checklist, Console + CLI
-│       └── lab-06-troubleshooting.md
+│   ├── 06-troubleshooting-basics/
+│   │   ├── README.md                  Connectivity checklist, disk I/O, Console + CLI
+│   │   └── lab-06-troubleshooting.md
+│   ├── 07-user-group-management/
+│   │   ├── README.md
+│   │   ├── lab-07-user-group-management.md   useradd, usermod, groupadd, sudo/sudoers
+│   │   └── scripts/user-management-demo.sh
+│   └── 08-bash-scripting-basics/
+│       ├── README.md
+│       ├── lab-08-bash-scripting.md   variables, conditionals, loops, functions
+│       └── scripts/server-health-check.sh
 │
 ├── module-03-iam-and-aws-cli/         ─────────────────────────────────────────
 │   ├── README.md
@@ -329,7 +337,7 @@ Module 05 — Mini Project
 | # | Module | Key Skills |
 |---|--------|------------|
 | 01 | [AWS EC2 & Linux Fundamentals](./module-01-aws-ec2-linux/README.md) | Launch EC2 (Console + CLI), Security Groups, Key Pairs, EC2 Instance Connect, SSH, Linux navigation, apt, systemctl |
-| 02 | [Linux Administration](./module-02-linux-administration/README.md) | `chmod`/`chown` (per file-type), environment variables, `journalctl`, UFW + Security Group in tandem, cron scheduling, connectivity troubleshooting |
+| 02 | [Linux Administration](./module-02-linux-administration/README.md) | `chmod`/`chown` (per file-type), environment variables, `journalctl`, UFW + Security Group in tandem, cron scheduling, connectivity/disk I/O troubleshooting, user/group management + sudoers, bash scripting fundamentals |
 | 03 | [IAM & AWS CLI](./module-03-iam-and-aws-cli/README.md) | IAM users + groups (Console + CLI), IAM roles + instance profiles, JSON policies, policy simulator, AWS CLI v2 named profiles, JMESPath `--query` |
 | 04 | [Web Server & Security](./module-04-webserver-security/README.md) | Nginx installation, virtual hosts, reverse proxy (`proxy_pass`), Route 53 hosted zones + records (Console + CLI), domain mapping, Certbot SSL, auto-renewal |
 | 05 | [Mini Project](./module-05-mini-project/README.md) | Full end-to-end deployment for `aws-basic.ostaddevops.click` |
@@ -396,6 +404,8 @@ These scripts run **on the EC2 instance**, not on your local machine (except `ve
 | `module-02-linux-administration/04-firewall-ufw/scripts/ufw-setup.sh` | EC2 | Configures UFW with standard rules |
 | `module-02-linux-administration/05-cronjobs/scripts/cron-examples.sh` | EC2 | Installs example cron jobs |
 | `module-02-linux-administration/03-logs-and-monitoring/scripts/log-monitor.sh` | EC2 | Tails and parses nginx/system logs |
+| `module-02-linux-administration/07-user-group-management/scripts/user-management-demo.sh` | EC2 | Creates a user/group, grants least-privilege sudo, then cleans up |
+| `module-02-linux-administration/08-bash-scripting-basics/scripts/server-health-check.sh` | EC2 | Combines service, disk, memory, and port checks into one script |
 | `module-03-iam-and-aws-cli/04-aws-cli-setup/scripts/verify-cli.sh` | Local or EC2 | Checks AWS CLI install, identity, and region |
 | `module-04-webserver-security/01-nginx-installation/scripts/install-nginx.sh` | EC2 | Installs nginx, verifies port 80, enables at boot |
 | `module-04-webserver-security/06-ssl-certbot/scripts/setup-ssl.sh` | EC2 (as sudo) | Full SSL install — DNS-checks www before requesting cert |

@@ -1,6 +1,6 @@
 ﻿# Module 02 — Linux Administration
 
-This module covers the essential Linux administration skills every DevOps engineer uses daily: controlling who can access what, managing configuration through environment variables, reading logs, securing the server with a firewall, automating tasks with cron, and diagnosing common problems.
+This module covers the essential Linux administration skills every DevOps engineer uses daily: controlling who can access what, managing configuration through environment variables, reading logs, securing the server with a firewall, automating tasks with cron, diagnosing common problems, managing users and groups, and automating it all with bash.
 
 ## Topics
 
@@ -11,7 +11,9 @@ This module covers the essential Linux administration skills every DevOps engine
 | 03 | [Logs & Monitoring](./03-logs-and-monitoring/README.md) | journalctl, tail -f, grep in logs |
 | 04 | [Firewall — UFW](./04-firewall-ufw/README.md) | Allow/deny ports, enable UFW, mirror rules in AWS Security Groups |
 | 05 | [Cronjobs](./05-cronjobs/README.md) | Schedule tasks with crontab |
-| 06 | [Troubleshooting Basics](./06-troubleshooting-basics/README.md) | Disk, memory, ports, connectivity checklist, Security Group CLI |
+| 06 | [Troubleshooting Basics](./06-troubleshooting-basics/README.md) | Disk, memory, disk I/O, ports, connectivity checklist, Security Group CLI |
+| 07 | [User & Group Management](./07-user-group-management/README.md) | useradd, usermod, groupadd, sudo & sudoers |
+| 08 | [Bash Scripting Basics](./08-bash-scripting-basics/README.md) | Variables, conditionals, loops, functions, automation scripts |
 
 ## Prerequisites
 
@@ -19,7 +21,7 @@ Complete [Module 01](../module-01-aws-ec2-linux/README.md) — you should have a
 
 ## By the End of This Module
 
-You'll be able to set correct file permissions, pass configuration via environment variables, read system and application logs, harden your server's network exposure with UFW and AWS Security Groups together, schedule automated tasks, and diagnose the most common server problems.
+You'll be able to set correct file permissions, pass configuration via environment variables, read system and application logs, harden your server's network exposure with UFW and AWS Security Groups together, schedule automated tasks, diagnose the most common server problems, manage users/groups and sudo access, and write bash scripts to automate it all.
 
 
 ---
